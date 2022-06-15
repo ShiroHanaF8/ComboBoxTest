@@ -8,6 +8,8 @@
 #include "ComboBoxDlg.h"
 #include "afxdialogex.h"
 
+#include "MessageDefine.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -28,11 +30,15 @@ void CComboBoxDlg::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_COMBO1, m_comboBox1);
 	DDX_Control(pDX, IDC_COMBOBOXEX1, m_comboBox2);
+	DDX_Control(pDX, IDC_RADIO1, m_radioSetFocus);
+	DDX_Control(pDX, IDC_RADIO2, m_radioKillFocus);
 }
 
 BEGIN_MESSAGE_MAP(CComboBoxDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_MESSAGE(WM_EXCOMBO_SET_FOCUS, OnSetFocus)
+	ON_MESSAGE(WM_EXCOMBO_KILL_FOCUS, OnKillFocus)
 END_MESSAGE_MAP()
 
 
@@ -77,6 +83,9 @@ BOOL CComboBoxDlg::OnInitDialog()
 	item.iImage = 2;
 	m_comboBox2.InsertItem(&item);
 
+	m_comboBox1.SetCurSel(0);
+	m_comboBox2.SetCurSel(0);
+
 	return TRUE;  // フォーカスをコントロールに設定した場合を除き、TRUE を返します。
 }
 
@@ -114,4 +123,18 @@ void CComboBoxDlg::OnPaint()
 HCURSOR CComboBoxDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
+}
+
+LRESULT CComboBoxDlg::OnSetFocus(WPARAM wParam, LPARAM lParam)
+{
+	m_radioSetFocus.SetCheck(TRUE);
+	m_radioKillFocus.SetCheck(FALSE);
+	return TRUE;
+}
+
+LRESULT CComboBoxDlg::OnKillFocus(WPARAM wParam, LPARAM lParam)
+{
+	m_radioSetFocus.SetCheck(FALSE);
+	m_radioKillFocus.SetCheck(TRUE);
+	return TRUE;
 }

@@ -32,8 +32,14 @@ protected:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
+
+	afx_msg LRESULT OnSetFocus(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnKillFocus(WPARAM wParam, LPARAM lParam);
+
 	DECLARE_MESSAGE_MAP()
 public:
 	CComboBoxEx m_comboBox1;
 	EnhanceComboBox m_comboBox2;
+	CButton m_radioSetFocus;
+	CButton m_radioKillFocus;
 };

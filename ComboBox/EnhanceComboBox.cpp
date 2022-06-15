@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "EnhanceComboBox.h"
-
+#include "MessageDefine.h"
 
 BOOL EnhanceComboBox::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pLResult)
 {
@@ -24,9 +24,11 @@ BOOL EnhanceComboBox::OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLER
 		break;
 	case CBN_KILLFOCUS:
 		TRACE(_T("CBN_KILLFICOS nID %08u\n"), nID);
+		GetParent()->PostMessageW(WM_EXCOMBO_KILL_FOCUS);
 		break;
 	case CBN_SETFOCUS:
 		TRACE(_T("CBN_SETFOCUS nID %08u\n"), nID);
+		GetParent()->PostMessageW(WM_EXCOMBO_SET_FOCUS);
 		break;
 	}
 
