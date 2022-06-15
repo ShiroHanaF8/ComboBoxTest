@@ -4,7 +4,12 @@
 
 BOOL EnhanceComboBox::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pLResult)
 {
-	// TODO: ここに特定なコードを追加するか、もしくは基底クラスを呼び出してください。
+	switch (message)
+	{
+	default:
+		//TRACE(_T("Child Notify message %08u wParam %08u lParam %08u\n"), message, wParam, lParam);
+		break;
+	}
 
 	return CComboBoxEx::OnChildNotify(message, wParam, lParam, pLResult);
 }
@@ -12,7 +17,18 @@ BOOL EnhanceComboBox::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam, 
 
 BOOL EnhanceComboBox::OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo)
 {
-	// TODO: ここに特定なコードを追加するか、もしくは基底クラスを呼び出してください。
+
+	switch (nCode) {
+	case CBENF_KILLFOCUS:
+		TRACE(_T("CBENF_KILLFOCUS nID %08u\n"), nID);
+		break;
+	case CBN_KILLFOCUS:
+		TRACE(_T("CBN_KILLFICOS nID %08u\n"), nID);
+		break;
+	case CBN_SETFOCUS:
+		TRACE(_T("CBN_SETFOCUS nID %08u\n"), nID);
+		break;
+	}
 
 	return CComboBoxEx::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
 }
@@ -20,7 +36,7 @@ BOOL EnhanceComboBox::OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLER
 
 BOOL EnhanceComboBox::OnCommand(WPARAM wParam, LPARAM lParam)
 {
-	// TODO: ここに特定なコードを追加するか、もしくは基底クラスを呼び出してください。
+	//TRACE(_T("Cmd wParam %08u lParam %08u\n"), wParam, lParam);
 
 	return CComboBoxEx::OnCommand(wParam, lParam);
 }
@@ -28,7 +44,7 @@ BOOL EnhanceComboBox::OnCommand(WPARAM wParam, LPARAM lParam)
 
 BOOL EnhanceComboBox::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
-	// TODO: ここに特定なコードを追加するか、もしくは基底クラスを呼び出してください。
+	//TRACE(_T("Wnd message %08u wParam %08u lParam %08u\n"), message, wParam, lParam);
 
 	return CComboBoxEx::OnWndMsg(message, wParam, lParam, pResult);
 }
@@ -36,7 +52,7 @@ BOOL EnhanceComboBox::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESU
 
 BOOL EnhanceComboBox::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
-	// TODO: ここに特定なコードを追加するか、もしくは基底クラスを呼び出してください。
+	//TRACE(_T("Notify wParam %08u lParam %08u\n"), wParam, lParam);
 
 	return CComboBoxEx::OnNotify(wParam, lParam, pResult);
 }

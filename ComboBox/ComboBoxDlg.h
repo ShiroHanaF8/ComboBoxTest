@@ -34,6 +34,6 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 public:
-	EnhanceComboBox m_comboBox1;
+	CComboBoxEx m_comboBox1;
 	EnhanceComboBox m_comboBox2;
 };
