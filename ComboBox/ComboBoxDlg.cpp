@@ -73,14 +73,17 @@ BOOL CComboBoxDlg::OnInitDialog()
 	m_image.Add(ico);
 	m_comboBox2.SetImageList(&m_image);
 
-	item.mask = CBEIF_IMAGE;
+	item.mask = CBEIF_IMAGE | CBEIF_TEXT;
 	item.iImage = 0;
+	item.pszText = _T("A");
 	m_comboBox2.InsertItem(&item);
 
 	item.iImage = 1;
+	item.pszText = _T("B");
 	m_comboBox2.InsertItem(&item);
 
 	item.iImage = 2;
+	item.pszText = _T("C");
 	m_comboBox2.InsertItem(&item);
 
 	m_comboBox1.SetCurSel(0);
