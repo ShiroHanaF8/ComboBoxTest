@@ -22,14 +22,6 @@ BOOL EnhanceComboBox::OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLER
 	case CBENF_KILLFOCUS:
 		TRACE(_T("CBENF_KILLFOCUS nID %08u\n"), nID);
 		break;
-	case CBN_KILLFOCUS:
-		TRACE(_T("CBN_KILLFICOS nID %08u\n"), nID);
-		GetParent()->PostMessageW(WM_EXCOMBO_KILL_FOCUS);
-		break;
-	case CBN_SETFOCUS:
-		TRACE(_T("CBN_SETFOCUS nID %08u\n"), nID);
-		GetParent()->PostMessageW(WM_EXCOMBO_SET_FOCUS);
-		break;
 	}
 
 	return CComboBoxEx::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
@@ -57,4 +49,27 @@ BOOL EnhanceComboBox::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 	//TRACE(_T("Notify wParam %08u lParam %08u\n"), wParam, lParam);
 
 	return CComboBoxEx::OnNotify(wParam, lParam, pResult);
+}
+BEGIN_MESSAGE_MAP(EnhanceComboBox, CComboBoxEx)
+	ON_CONTROL_REFLECT(CBN_SETFOCUS, &EnhanceComboBox::OnCbnSetfocus)
+	ON_CONTROL_REFLECT(CBN_KILLFOCUS, &EnhanceComboBox::OnCbnKillfocus)
+	ON_CONTROL_REFLECT(CBN_DROPDOWN, &EnhanceComboBox::OnCbnDropdown)
+END_MESSAGE_MAP()
+
+
+void EnhanceComboBox::OnCbnSetfocus()
+{
+	GetParent()->PostMessageW(WM_EXCOMBO_SET_FOCUS);
+}
+
+
+void EnhanceComboBox::OnCbnKillfocus()
+{
+	GetParent()->PostMessageW(WM_EXCOMBO_KILL_FOCUS);
+}
+
+
+void EnhanceComboBox::OnCbnDropdown()
+{
+	GetParent()->PostMessageW(WM_EXCOMBO_SET_FOCUS);
 }

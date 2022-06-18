@@ -9,5 +9,9 @@ public:
     virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
     virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
     virtual BOOL OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+    DECLARE_MESSAGE_MAP()
+    afx_msg void OnCbnSetfocus();
+    afx_msg void OnCbnKillfocus();
+    afx_msg void OnCbnDropdown();
 };
 
